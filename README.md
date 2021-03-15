@@ -2,7 +2,7 @@
 Symbolic XAI explainable machine learning &amp; non-linear regression platform for MATLAB
 Version 2.0 (22nd May 2015)
 
-Contains the **Hypothesis-ML** engine for using ML to build models (version 2.0). This module just not require any additional MATLAB toolboxes.
+Contains the **Hypothesis-ML** engine for using ML to build models (version 2.0). This module does not require any additional MATLAB toolboxes.
 
 Contains the **Sym-XAI** explainable AI module for interpreting and visualising models and also for simplifying and exporting non-linear regression models (version 2.0). This module requires the additional MATLAB Symbolic Math Toolbox.
 

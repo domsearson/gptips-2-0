@@ -193,18 +193,18 @@ if gp.info.toolbox.symbolic
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=1:length(evalTree);
-                geneExpr = gp.fitness.returnvalues{ID}(i+1)*sym(evalTree{i});
+                geneExpr = gp.fitness.returnvalues{ID}(i+1)*str2sym(evalTree{i});
                 fullExpr = fullExpr + geneExpr;
                 exprArray{i+1} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
             
         else %normal processing where bias is folded into first gene
-            fullExpr = gp.fitness.returnvalues{ID}(1) + gp.fitness.returnvalues{ID}(2)*sym(evalTree{1});
+            fullExpr = gp.fitness.returnvalues{ID}(1) + gp.fitness.returnvalues{ID}(2)*str2sym(evalTree{1});
             exprArray = cell(1, numel(evalTree));
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=2:length(evalTree);
-                geneExpr = gp.fitness.returnvalues{ID}(i+1) * sym(evalTree{i});
+                geneExpr = gp.fitness.returnvalues{ID}(i+1) * str2sym(evalTree{i});
                 fullExpr = fullExpr + geneExpr;
                 exprArray{i} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
@@ -236,18 +236,18 @@ if gp.info.toolbox.symbolic
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=1:length(evalTree);
-                geneExpr = gp.results.best.returnvalues(i+1) * sym(evalTree{i});
+                geneExpr = gp.results.best.returnvalues(i+1) * str2sym(evalTree{i});
                 fullExpr = fullExpr + geneExpr;
                 exprArray{i+1} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
             
         else
             
-            fullExpr = gp.results.best.returnvalues(1) + gp.results.best.returnvalues(2)*sym(evalTree{1});
+            fullExpr = gp.results.best.returnvalues(1) + gp.results.best.returnvalues(2)*str2sym(evalTree{1});
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=2:length(evalTree);
-                geneExpr = gp.results.best.returnvalues(i+1) * sym(evalTree{i});
+                geneExpr = gp.results.best.returnvalues(i+1) * str2sym(evalTree{i});
                 fullExpr = fullExpr+geneExpr;
                 exprArray{i} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
@@ -285,17 +285,17 @@ if gp.info.toolbox.symbolic
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=1:length(evalTree);
-                geneExpr = gp.results.valbest.returnvalues(i+1)*sym(evalTree{i});
+                geneExpr = gp.results.valbest.returnvalues(i+1)*str2sym(evalTree{i});
                 fullExpr = fullExpr+geneExpr;
                 exprArray{i+1} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
             
         else %normal processing (bias folded into first gene)
-            fullExpr = gp.results.valbest.returnvalues(1) + gp.results.valbest.returnvalues(2)*sym(evalTree{1});
+            fullExpr = gp.results.valbest.returnvalues(1) + gp.results.valbest.returnvalues(2)*str2sym(evalTree{1});
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=2:length(evalTree);
-                geneExpr = gp.results.valbest.returnvalues(i+1) * sym(evalTree{i});
+                geneExpr = gp.results.valbest.returnvalues(i+1) * str2sym(evalTree{i});
                 fullExpr = fullExpr+geneExpr;
                 exprArray{i} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
@@ -333,17 +333,17 @@ if gp.info.toolbox.symbolic
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=1:length(evalTree);
-                geneExpr = gp.results.testbest.returnvalues(i+1)*sym(evalTree{i});
+                geneExpr = gp.results.testbest.returnvalues(i+1)*str2sym(evalTree{i});
                 fullExpr = fullExpr+geneExpr;
                 exprArray{i+1} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
             
         else %normal processing (bias folded into first gene)
-            fullExpr = gp.results.testbest.returnvalues(1) + gp.results.testbest.returnvalues(2)*sym(evalTree{1});
+            fullExpr = gp.results.testbest.returnvalues(1) + gp.results.testbest.returnvalues(2)*str2sym(evalTree{1});
             exprArray{1} = gpsimplify(fullExpr,simplifySteps,verReallyOld,fastMode);
             
             for i=2:length(evalTree);
-                geneExpr = gp.results.testbest.returnvalues(i+1) * sym(evalTree{i});
+                geneExpr = gp.results.testbest.returnvalues(i+1) * str2sym(evalTree{i});
                 fullExpr = fullExpr+geneExpr;
                 exprArray{i} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
             end
@@ -355,12 +355,12 @@ if gp.info.toolbox.symbolic
         numGenes = numel(ID) - 1;
         evalTree = gpreformat(gp,{ID{1:numGenes}},useAlias);
         rtnVals = ID{end};
-        fullExpr = rtnVals(1) + rtnVals(2)*sym(evalTree{1});
+        fullExpr = rtnVals(1) + rtnVals(2)*str2sym(evalTree{1});
         exprArray = cell(1, numel(evalTree)+1);
-        exprArray{1} = sym(rtnVals(1));
+        exprArray{1} = str2sym(rtnVals(1));
         
         for i=1:length(evalTree);
-            geneExpr = rtnVals(i+1) * sym(evalTree{i});
+            geneExpr = rtnVals(i+1) * str2sym(evalTree{i});
             fullExpr = fullExpr + geneExpr;
             exprArray{i+1} = gpsimplify(geneExpr,simplifySteps,verReallyOld,fastMode);
         end
